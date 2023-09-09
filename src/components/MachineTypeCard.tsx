@@ -6,6 +6,8 @@ import AttributeEditor from './AttributeEditor';
 import { TextInput } from 'react-native';
 import { AttributeType, MachineType } from '../types';
 import { useIsFocused } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { editMachineType } from '../store/actions/machineTypeActions';
 
 const MachineTypeCard = ({ machineType }) => {
   const [machineTypeClone, setMachineTypeClone] = useState<MachineType>({
@@ -13,6 +15,8 @@ const MachineTypeCard = ({ machineType }) => {
   });
 
   const isFocused = useIsFocused();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isFocused) {
@@ -31,10 +35,6 @@ const MachineTypeCard = ({ machineType }) => {
     () => !_.isEqual(machineType, machineTypeClone),
     [machineType, machineTypeClone],
   );
-
-  const saveAttributes = () => {
-    // dispatch(updateMachineTypeAttributes({ machineTypeId, attributes: editedAttributes }));
-  };
 
   const handleAttributeChange = () => {};
 
@@ -61,6 +61,10 @@ const MachineTypeCard = ({ machineType }) => {
     });
   };
 
+  const saveAllChanges = () => {
+    dispatch(editMachineType(machineTypeClone));
+  };
+
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -80,7 +84,7 @@ const MachineTypeCard = ({ machineType }) => {
         <View style={styles.actionBtns}>
           <Button title="Add Attribute" onPress={addNewAttribute} />
           {isMachineTypeChanged && (
-            <Button title="Save Changes" onPress={saveAttributes} />
+            <Button title="Save Changes" onPress={saveAllChanges} />
           )}
         </View>
       </Card.Content>

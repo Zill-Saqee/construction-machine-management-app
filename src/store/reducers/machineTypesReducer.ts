@@ -1,24 +1,18 @@
-import { AttributeType, MachineAttribute, MachineType } from '../../types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AttributeType, MachineType } from '../../types';
 import { ActionTypes } from '../actionTypes';
+export interface SetMachineTypesAction {
+  type: ActionTypes.SET_MACHINE_TYPES;
+  payload: MachineType[];
+}
 
 export interface AddMachineTypeAction {
   type: ActionTypes.ADD_MACHINE_TYPE;
-  payload: {
-    id: string;
-    name: string;
-    attributes: MachineAttribute[];
-    titleAttribute: string;
-  };
+  payload: MachineType;
 }
-
 export interface EditMachineTypeAction {
   type: ActionTypes.EDIT_MACHINE_TYPE;
-  payload: {
-    id: string;
-    name: string;
-    attributes: MachineAttribute[];
-    titleAttribute: string;
-  };
+  payload: MachineType;
 }
 
 export interface DeleteMachineTypeAction {
@@ -65,22 +59,36 @@ const initialState: MachineType[] = [
   },
 ];
 
+type MachineTypesReducerAction =
+  | SetMachineTypesAction
+  | AddMachineTypeAction
+  | EditMachineTypeAction
+  | DeleteMachineTypeAction;
+
 const machineTypesReducer = (
   state = initialState,
-  action:
-    | AddMachineTypeAction
-    | EditMachineTypeAction
-    | DeleteMachineTypeAction,
+  action: MachineTypesReducerAction,
 ): MachineType[] => {
   switch (action.type) {
+    case ActionTypes.SET_MACHINE_TYPES:
+      return [...action.payload];
     case ActionTypes.ADD_MACHINE_TYPE:
       return [...state, action.payload];
     case ActionTypes.EDIT_MACHINE_TYPE:
-      return state.map(machineType =>
+      const updatedState = state.map(machineType =>
         machineType.id === action.payload.id
           ? { ...machineType, ...action.payload }
           : machineType,
       );
+
+      // Save the updated state to AsyncStorage
+      AsyncStorage.setItem('machineTypes', JSON.stringify(updatedState))
+        .then(() => console.log('State saved to AsyncStorage'))
+        .catch(error =>
+          console.error('Error saving state to AsyncStorage', error),
+        );
+
+      return updatedState;
     case ActionTypes.DELETE_MACHINE_TYPE:
       return state.filter(machineType => machineType.id !== action.payload.id);
     default:
