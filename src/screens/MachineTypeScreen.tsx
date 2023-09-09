@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, Button, ScrollView } from 'react-native';
 import MachineTypeCard from '../components/MachineTypeCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { MachineType, STORAGE_KEYS } from '../types';
-import { setMachineTypes } from '../store/actions/machineTypeActions';
+import {
+  addMachineTypeAction,
+  setMachineTypes,
+} from '../store/actions/machineTypeActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MachineTypesScreen = () => {
@@ -29,19 +32,30 @@ const MachineTypesScreen = () => {
     setMachineTypesInStoreFromStorage();
   }, [setMachineTypesInStoreFromStorage]);
 
+  const addNewMachineType = () => {
+    const newMachineType: MachineType = {
+      id: (Math.random() * 100000).toString(),
+      name: '',
+      attributes: [],
+      titleAttribute: '',
+    };
+    dispatch(addMachineTypeAction(newMachineType));
+  };
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {machineTypes.map((machineType: MachineType) => (
         <MachineTypeCard key={machineType.name} machineType={machineType} />
       ))}
-    </View>
+      <Button title="Add New Machine Type" onPress={addNewMachineType} />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 2,
+    padding: 15,
     height: 'auto',
     backgroundColor: 'blue',
   },

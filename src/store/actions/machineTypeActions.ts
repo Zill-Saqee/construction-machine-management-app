@@ -24,6 +24,13 @@ export const setMachineTypes = machineTypes => {
   };
 };
 
+export const addMachineTypeAction = (newMachineType: MachineType) => {
+  return {
+    type: ActionTypes.ADD_MACHINE_TYPE,
+    payload: newMachineType,
+  };
+};
+
 export const editMachineType = (updatedMachineType: MachineType) => {
   return {
     type: ActionTypes.EDIT_MACHINE_TYPE,

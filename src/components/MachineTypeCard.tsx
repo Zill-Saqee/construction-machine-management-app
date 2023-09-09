@@ -80,7 +80,7 @@ const MachineTypeCard = ({ machineType }) => {
           <TextInput
             value={machineTypeClone.name}
             placeholder={machineTypeClone.name ?? 'Name'}
-            style={styles.input}
+            style={styles.nameInputField}
             onChangeText={handleNameChange}
           />
         </View>
@@ -101,6 +101,10 @@ const MachineTypeCard = ({ machineType }) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    padding: 0,
+    margin: 10,
+  },
   nameInput: {
     borderColor: '#ccc',
     backgroundColor: '#fff',
@@ -108,14 +112,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginBottom: 5,
   },
-  input: {
+  nameInputField: {
     borderColor: '#ccc',
     padding: 8,
     color: '#333',
-  },
-  card: {
-    padding: 2,
-    margin: 10,
   },
   actionBtns: {
     display: 'flex',

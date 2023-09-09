@@ -13,13 +13,15 @@ const DrawerNavigator: React.FC = () => {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Dashboard" component={DashboardScreen} />
-      {machineTypes.map(machineType => (
-        <Drawer.Screen
-          key={machineType.id}
-          name={machineType.name}
-          component={MachineTypesScreen}
-        />
-      ))}
+      {machineTypes
+        .filter(m => m.name !== '')
+        .map(machineType => (
+          <Drawer.Screen
+            key={machineType.id}
+            name={machineType.name}
+            component={MachineTypesScreen}
+          />
+        ))}
       <Drawer.Screen name="Machine Types" component={MachineTypesScreen} />
     </Drawer.Navigator>
   );
