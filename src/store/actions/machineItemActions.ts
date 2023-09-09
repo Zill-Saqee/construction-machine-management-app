@@ -7,3 +7,10 @@ export const addMachineItemAction = (newMachineItem: Machine) => {
     payload: newMachineItem,
   };
 };
+
+export const editMachineItemAction = (updatedMachineItem: Machine) => {
+  return {
+    type: ActionTypes.EDIT_MACHINE,
+    payload: updatedMachineItem,
+  };
+};

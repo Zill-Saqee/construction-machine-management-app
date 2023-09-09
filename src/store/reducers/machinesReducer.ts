@@ -8,7 +8,12 @@ type AddNewMachineAction = {
   payload: Machine;
 };
 
-type MachinesReducerActionType = AddNewMachineAction;
+type EditNewMachineAction = {
+  type: ActionTypes.EDIT_MACHINE;
+  payload: Machine;
+};
+
+type MachinesReducerActionType = AddNewMachineAction | EditNewMachineAction;
 
 const machinesReducer = (
   state: Machine[] = initialState,
@@ -17,12 +22,12 @@ const machinesReducer = (
   switch (action.type) {
     case ActionTypes.ADD_MACHINE:
       return [...state, action.payload];
-    // case ActionTypes.EDIT_MACHINE:
-    //   return state.map(machineType =>
-    //     machineType.id === action.payload.id
-    //       ? { ...machineType, ...action.payload }
-    //       : machineType,
-    //   );
+    case ActionTypes.EDIT_MACHINE:
+      return state.map(machine =>
+        machine.id === action.payload.id
+          ? { ...machine, ...action.payload }
+          : machine,
+      );
     // case ActionTypes.DELETE_MACHINE:
     //   return state.filter(machineType => machineType.id !== action.payload.id);
     default:

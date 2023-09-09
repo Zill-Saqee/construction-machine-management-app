@@ -9,6 +9,7 @@ import { CheckBox } from 'react-native-elements';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import * as _ from 'lodash';
+import { editMachineItemAction } from '../store/actions/machineItemActions';
 type MachineItemCardProps = {
   machineTypeAttributes: MachineAttribute[];
   machineItem: Machine;
@@ -51,7 +52,9 @@ const MachineItemCard = ({
     });
   };
 
-  const handleSaveItem = () => {};
+  const handleSaveItem = () => {
+    dispatch(editMachineItemAction(machineItemClone));
+  };
   return (
     <Card style={styles.card}>
       <Card.Content>
