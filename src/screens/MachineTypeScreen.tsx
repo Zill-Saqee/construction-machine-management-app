@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     height: 'auto',
-    backgroundColor: 'red',
+    backgroundColor: 'blue',
   },
 });
 

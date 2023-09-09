@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { FieldType, MachineAttribute } from '../types';
 import AttributeInput from './AttributeInput';
@@ -26,14 +26,8 @@ const AttributeEditor = ({ machineTypeId, attributes }) => {
   return (
     <View style={styles.container}>
       {attributes.map((attribute: MachineAttribute) => (
-        // <TextInput
-        //   key={attribute.id}
-        //   style={styles.input}
-        //   placeholder={attribute.name}
-        //   value={attribute.name}
-        //   onChangeText={text => handleAttributeChange(attribute, text)}
-        // />
         <AttributeInput
+          key={attribute.id}
           initialLabel={attribute.name}
           options={Object.values(FieldType)}
           onChange={() => {}}
