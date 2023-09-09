@@ -2,24 +2,38 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { MachineAttribute } from '../types';
+
+type AttributeInputProps = {
+  options: string[];
+  attribute: MachineAttribute;
+  onChange: (attr: MachineAttribute) => void;
+  removeAttribute: () => void;
+};
 
 const AttributeInput = ({
-  initialLabel,
   options,
   onChange,
   removeAttribute,
-}) => {
-  const [label, setLabel] = useState(initialLabel);
-  const [selectedValue, setSelectedValue] = useState('');
+  attribute,
+}: AttributeInputProps) => {
+  const [label, setLabel] = useState(attribute.name);
+  const [selectedValue, setSelectedValue] = useState(attribute.type);
 
-  const handleLabelChange = text => {
+  const handleNameChange = text => {
     setLabel(text);
-    onChange(selectedValue, text);
+    onChange({
+      ...attribute,
+      name: text,
+    });
   };
 
-  const handleValueChange = value => {
+  const handleTypeChange = value => {
     setSelectedValue(value);
-    onChange(value, label);
+    onChange({
+      ...attribute,
+      type: value,
+    });
   };
 
   return (
@@ -27,13 +41,13 @@ const AttributeInput = ({
       <TextInput
         style={styles.labelInput}
         value={label}
-        onChangeText={handleLabelChange}
+        onChangeText={handleNameChange}
         placeholder="Attribute Label"
         placeholderTextColor="#ccc"
       />
       <Picker
         selectedValue={selectedValue}
-        onValueChange={handleValueChange}
+        onValueChange={handleTypeChange}
         style={styles.picker}>
         <Picker.Item label="Type" value="" />
         {options.map(option => (
@@ -65,13 +79,13 @@ const styles = StyleSheet.create({
     paddingRight: 5,
   },
   labelInput: {
-    flex: 3,
+    flex: 5,
     fontSize: 16,
     paddingVertical: 5,
     color: '#333',
   },
   picker: {
-    flex: 2,
+    flex: 6,
     borderWidth: 1,
     backgroundColor: 'lightgrey',
     fontSize: 1,

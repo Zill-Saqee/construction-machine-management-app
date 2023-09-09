@@ -13,10 +13,10 @@ const AttributeEditor = ({
       {attributes.map((attribute: MachineAttribute) => (
         <AttributeInput
           key={attribute.id}
-          initialLabel={attribute.name}
           options={Object.values(AttributeType)}
           onChange={handleAttributeChange}
           removeAttribute={() => removeAttribute(attribute.id)}
+          attribute={attribute}
         />
       ))}
     </View>

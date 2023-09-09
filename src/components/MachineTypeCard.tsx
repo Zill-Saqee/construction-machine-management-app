@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper';
 import * as _ from 'lodash';
 import AttributeEditor from './AttributeEditor';
 import { TextInput } from 'react-native';
-import { AttributeType, MachineType } from '../types';
+import { AttributeType, MachineAttribute, MachineType } from '../types';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { editMachineType } from '../store/actions/machineTypeActions';
@@ -36,7 +36,15 @@ const MachineTypeCard = ({ machineType }) => {
     [machineType, machineTypeClone],
   );
 
-  const handleAttributeChange = () => {};
+  const handleAttributeChange = (changedAttr: MachineAttribute) => {
+    setMachineTypeClone({
+      ...machineTypeClone,
+      attributes: machineTypeClone.attributes.map(attr => {
+        if (attr.id !== changedAttr.id) return attr;
+        return changedAttr;
+      }),
+    });
+  };
 
   const removeAttribute = (attributeId: string) => {
     setMachineTypeClone({
