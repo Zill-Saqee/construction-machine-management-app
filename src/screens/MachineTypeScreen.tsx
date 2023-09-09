@@ -39,7 +39,6 @@ const MachineTypesScreen = () => {
       name: '',
       attributes: [],
       titleAttribute: '',
-      machines: [],
     };
     dispatch(addMachineTypeAction(newMachineType));
   };

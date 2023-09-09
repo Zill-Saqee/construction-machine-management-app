@@ -65,12 +65,13 @@ const AttributeInput = ({
 
 const styles = StyleSheet.create({
   container: {
+    borderWidth: 1,
     marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '#ccc',
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     paddingHorizontal: 5,
     borderRadius: 4,
   },
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   picker: {
     flex: 6,
     borderWidth: 1,
-    backgroundColor: 'lightgrey',
+    // backgroundColor: 'lightgrey',
     fontSize: 1,
   },
 });

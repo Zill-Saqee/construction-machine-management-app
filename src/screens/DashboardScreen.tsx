@@ -14,15 +14,21 @@ const DashboardScreen: React.FC = () => {
     <View style={styles.container}>
       {machineTypes?.length ? (
         <List.Section>
-          {machineTypes.map(item => (
-            <List.Item
-              key={item.id}
-              title={item.name}
-              // left={() => <List.Icon icon="folder" />}
-              onPress={() => navigation.navigate('Machine Types')}
-              style={styles.listItem}
-            />
-          ))}
+          {machineTypes
+            .filter(type => !!type.name)
+            .map(item => (
+              <List.Item
+                key={item.id}
+                title={item.name}
+                // left={() => <List.Icon icon="folder" />}
+                onPress={() =>
+                  navigation.navigate(item.name, {
+                    machineTypeId: item.id,
+                  })
+                }
+                style={styles.listItem}
+              />
+            ))}
         </List.Section>
       ) : (
         <Card elevation={3} style={styles.card}>
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#2980b9',
   },
   listItem: {
     borderBottomWidth: 1,

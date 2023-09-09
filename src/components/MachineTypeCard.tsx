@@ -75,8 +75,8 @@ const MachineTypeCard = ({ machineType }) => {
     });
   };
 
-  const deleteMachineType = (machineType: MachineType) => {
-    dispatch(deleteMachineTypeAction(machineType));
+  const deleteMachineType = (machineTypeToDelete: MachineType) => {
+    dispatch(deleteMachineTypeAction(machineTypeToDelete));
   };
 
   const saveAllChanges = () => {
@@ -120,14 +120,16 @@ const styles = StyleSheet.create({
   card: {
     padding: 0,
     margin: 10,
+    backgroundColor: '#3498db',
   },
   boldText: {
     fontWeight: 'bold',
     fontSize: 16,
   },
   nameInput: {
+    borderWidth: 1,
     borderColor: '#ccc',
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     paddingHorizontal: 5,
     borderRadius: 4,
     marginBottom: 5,

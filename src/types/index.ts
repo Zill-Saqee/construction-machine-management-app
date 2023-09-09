@@ -21,7 +21,6 @@ export interface MachineType {
   name: string;
   attributes: MachineAttribute[];
   titleAttribute: string;
-  machines: Machine[];
 }
 
 // Define the shape of a machine
