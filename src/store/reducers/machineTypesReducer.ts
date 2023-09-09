@@ -17,9 +17,7 @@ export interface EditMachineTypeAction {
 
 export interface DeleteMachineTypeAction {
   type: ActionTypes.DELETE_MACHINE_TYPE;
-  payload: {
-    id: string;
-  };
+  payload: MachineType;
 }
 
 const initialState: MachineType[] = [

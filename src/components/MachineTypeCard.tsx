@@ -7,7 +7,10 @@ import { TextInput } from 'react-native';
 import { AttributeType, MachineAttribute, MachineType } from '../types';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-import { editMachineType } from '../store/actions/machineTypeActions';
+import {
+  deleteMachineTypeAction,
+  editMachineType,
+} from '../store/actions/machineTypeActions';
 import { getRandomId } from '../utils';
 
 const MachineTypeCard = ({ machineType }) => {
@@ -41,7 +44,9 @@ const MachineTypeCard = ({ machineType }) => {
     setMachineTypeClone({
       ...machineTypeClone,
       attributes: machineTypeClone.attributes.map(attr => {
-        if (attr.id !== changedAttr.id) return attr;
+        if (attr.id !== changedAttr.id) {
+          return attr;
+        }
         return changedAttr;
       }),
     });
@@ -70,6 +75,10 @@ const MachineTypeCard = ({ machineType }) => {
     });
   };
 
+  const deleteMachineType = (machineType: MachineType) => {
+    dispatch(deleteMachineTypeAction(machineType));
+  };
+
   const saveAllChanges = () => {
     dispatch(editMachineType(machineTypeClone));
   };
@@ -93,6 +102,10 @@ const MachineTypeCard = ({ machineType }) => {
         />
         <View style={styles.actionBtns}>
           <Button title="Add Attribute" onPress={addNewAttribute} />
+          <Button
+            title="Delete"
+            onPress={() => deleteMachineType(machineTypeClone)}
+          />
           {isMachineTypeChanged && (
             <Button title="Save Changes" onPress={saveAllChanges} />
           )}
@@ -128,7 +141,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 5,
+    fontSize: 10,
+    gap: 3,
   },
 });
 
