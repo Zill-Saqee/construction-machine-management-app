@@ -19,7 +19,7 @@ const DashboardScreen: React.FC = () => {
               key={item.id}
               title={item.name}
               // left={() => <List.Icon icon="folder" />}
-              onPress={() => navigation.navigate('MachineTypes')}
+              onPress={() => navigation.navigate('Machine Types')}
               style={styles.listItem}
             />
           ))}
