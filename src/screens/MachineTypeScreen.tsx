@@ -1,6 +1,12 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import Form from '../components/Form';
 
 type MachineType = {
@@ -16,8 +22,8 @@ const MachineTypesScreen: React.FC<MachineTypesScreenProps> = ({
   navigation,
 }) => {
   const machineTypes: MachineType[] = [
-    {id: 1, name: 'Bulldozer'},
-    {id: 2, name: 'Cranes'},
+    { id: 1, name: 'Bulldozer' },
+    { id: 2, name: 'Cranes' },
     // Add more machine types
   ];
 
@@ -26,10 +32,10 @@ const MachineTypesScreen: React.FC<MachineTypesScreenProps> = ({
       <FlatList
         data={machineTypes}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('MachineTypeDetail', {machineType: item})
+              navigation.navigate('MachineTypeDetail', { machineType: item })
             }>
             <Text>{item.name}</Text>
           </TouchableOpacity>

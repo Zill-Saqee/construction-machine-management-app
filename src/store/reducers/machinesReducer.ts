@@ -1,5 +1,5 @@
-import {Machine} from '../../types';
-import {ActionTypes} from '../actionTypes';
+import { Machine } from '../../types';
+import { ActionTypes } from '../actionTypes';
 
 const initialState: Machine[] = [];
 
@@ -13,7 +13,7 @@ const machinesReducer = (
     case ActionTypes.EDIT_MACHINE:
       return state.map(machineType =>
         machineType.id === action.payload.id
-          ? {...machineType, ...action.payload}
+          ? { ...machineType, ...action.payload }
           : machineType,
       );
     case ActionTypes.DELETE_MACHINE:

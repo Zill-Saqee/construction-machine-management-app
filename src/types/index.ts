@@ -25,9 +25,3 @@ export interface Machine {
   typeId: string;
   // Add other machine properties here
 }
-
-export interface AppState {
-  machineTypes: MachineType[];
-  machines: Machine[];
-  filter: string | null;
-}

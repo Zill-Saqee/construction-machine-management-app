@@ -8,7 +8,7 @@ export const setMachineTypes = machineTypes => {
   return async dispatch => {
     try {
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(machineTypes));
-      dispatch({type: 'SET_MACHINE_TYPES', payload: machineTypes});
+      dispatch({ type: 'SET_MACHINE_TYPES', payload: machineTypes });
     } catch (error) {
       console.error('Error saving machine types:', error);
     }

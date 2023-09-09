@@ -1,6 +1,6 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigator from './DrawerNavigation';
 import MachineTypesScreen from '../screens/MachineTypeScreen';
 
@@ -13,7 +13,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="Drawer"
           component={DrawerNavigator}
-          options={{headerShown: true}}
+          options={{ headerShown: true }}
         />
         <Stack.Screen name="Machines" component={MachineTypesScreen} />
       </Stack.Navigator>

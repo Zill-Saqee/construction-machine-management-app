@@ -1,5 +1,5 @@
-import {MachineAttribute, MachineType} from '../../types';
-import {ActionTypes} from '../actionTypes';
+import { MachineAttribute, MachineType } from '../../types';
+import { ActionTypes } from '../actionTypes';
 
 export interface AddMachineTypeAction {
   type: ActionTypes.ADD_MACHINE_TYPE;
@@ -50,7 +50,7 @@ const machineTypesReducer = (
     case ActionTypes.EDIT_MACHINE_TYPE:
       return state.map(machineType =>
         machineType.id === action.payload.id
-          ? {...machineType, ...action.payload}
+          ? { ...machineType, ...action.payload }
           : machineType,
       );
     case ActionTypes.DELETE_MACHINE_TYPE:

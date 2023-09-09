@@ -1,5 +1,5 @@
-import {MachineAttribute} from '../../types';
-import {ActionTypes} from '../actionTypes';
+import { MachineAttribute } from '../../types';
+import { ActionTypes } from '../actionTypes';
 
 // Action types
 export interface AddMachineTypeAction {

@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import machineTypesReducer from './machineTypesReducer'; // Import your reducers as needed
 import machinesReducer from './machinesReducer';
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store';
-import {List, Card} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { List, Card } from 'react-native-paper';
 
 const DashboardScreen: React.FC = () => {
   const navigation = useNavigation<any>();
@@ -32,7 +32,7 @@ const DashboardScreen: React.FC = () => {
             </Text>
           </Card.Content>
           <TouchableOpacity
-            onPress={() => navigation.navigate('MachineTypes')}
+            onPress={() => navigation.navigate('Machine Types')}
             style={styles.button}>
             <Text style={styles.buttonText}>Add Machine Type</Text>
           </TouchableOpacity>
