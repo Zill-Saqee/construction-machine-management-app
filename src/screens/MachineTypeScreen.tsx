@@ -39,6 +39,7 @@ const MachineTypesScreen = () => {
       name: '',
       attributes: [],
       titleAttribute: '',
+      machines: [],
     };
     dispatch(addMachineTypeAction(newMachineType));
   };
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     height: 100,
-    backgroundColor: 'blue',
+    backgroundColor: '#2980b9',
   },
 });
 
