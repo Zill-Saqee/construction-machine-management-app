@@ -1,15 +1,57 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useMemo, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import { TextInput } from 'react-native';
-import { AttributeType, MachineAttribute } from '../types';
+import { AttributeType, Machine, MachineAttribute } from '../types';
 import { TextInputMask } from 'react-native-masked-text';
 import { CheckBox } from 'react-native-elements';
+import { useIsFocused } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import * as _ from 'lodash';
 type MachineItemCardProps = {
   machineTypeAttributes: MachineAttribute[];
+  machineItem: Machine;
 };
 
-const MachineItemCard = ({ machineTypeAttributes }: MachineItemCardProps) => {
+const MachineItemCard = ({
+  machineTypeAttributes,
+  machineItem,
+}: MachineItemCardProps) => {
+  const [machineItemClone, setMachineItemClone] = useState<Machine>({
+    ...machineItem,
+  });
+
+  const isFocused = useIsFocused();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isFocused) {
+      setMachineItemClone(machineItem);
+    }
+  }, [isFocused, machineItem]);
+
+  const isMachineItemChanged = useMemo(
+    () => !_.isEqual(machineItem, machineItemClone),
+    [machineItem, machineItemClone],
+  );
+
+  const handleChangeText = (attrId, updatedVal) => {
+    setMachineItemClone({
+      ...machineItemClone,
+      [attrId]: updatedVal,
+    });
+  };
+
+  const handleCheckboxChange = (attrId, status) => {
+    setMachineItemClone({
+      ...machineItemClone,
+      [attrId]: !machineItemClone[attrId],
+    });
+  };
+
+  const handleSaveItem = () => {};
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -21,8 +63,10 @@ const MachineItemCard = ({ machineTypeAttributes }: MachineItemCardProps) => {
             {[AttributeType.TEXT, AttributeType.NUMBER].includes(attr.type) && (
               <TextInput
                 style={styles.inputField}
-                // value={text}
-                // onChangeText={handleChangeText}
+                value={machineItemClone[attr.id] as string}
+                onChangeText={updatedVal =>
+                  handleChangeText(attr.id, updatedVal)
+                }
                 keyboardType={
                   attr.type === AttributeType.TEXT ? 'default' : 'numeric'
                 }
@@ -33,8 +77,8 @@ const MachineItemCard = ({ machineTypeAttributes }: MachineItemCardProps) => {
               <TextInputMask
                 style={styles.inputField}
                 placeholder="Enter date (MM/DD/YYYY)"
-                // value={dateValue}
-                // onChangeText={handleDateChange}
+                value={machineItemClone[attr.id] as string}
+                onChangeText={date => handleChangeText(attr.id, date)}
                 type={'datetime'}
                 options={{
                   format: 'MM/DD/YYYY',
@@ -50,14 +94,16 @@ const MachineItemCard = ({ machineTypeAttributes }: MachineItemCardProps) => {
                 containerStyle={styles.checkboxContainer}
                 textStyle={styles.checkboxText}
                 checked={true}
-                // onPress={handleCheckboxChange}
+                onPress={status => handleCheckboxChange(attr.id, status)}
               />
             )}
           </View>
         ))}
-        <View>
-          <Button title="Save" />
-        </View>
+        {isMachineItemChanged && (
+          <View>
+            <Button title="Save" onPress={handleSaveItem} />
+          </View>
+        )}
       </Card.Content>
     </Card>
   );

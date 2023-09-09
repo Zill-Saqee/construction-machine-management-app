@@ -74,6 +74,7 @@ const MachineTypeDetailScreen: React.FC = () => {
           <MachineItemCard
             key={machineTypeItem.id}
             machineTypeAttributes={currentMachineType?.attributes || []}
+            machineItem={machineTypeItem}
           />
         ))}
       </ScrollView>
