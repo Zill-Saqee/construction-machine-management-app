@@ -21,11 +21,13 @@ export interface MachineType {
   name: string;
   attributes: MachineAttribute[];
   titleAttribute: string;
+  machines: Machine[];
 }
 
 // Define the shape of a machine
 export interface Machine {
   id: string;
-  typeId: string;
-  // Add other machine properties here
+  typeId: string; // It will be MachineType id
+  // It will have all attributes names as keys and values as attribute type defined in MachineType
+  [key: string]: string | number | boolean;
 }

@@ -4,6 +4,7 @@ import MachineTypesScreen from '../screens/MachineTypeScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
+import MachineTypeDetailScreen from '../screens/MachineTypeDetailScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,7 +20,8 @@ const DrawerNavigator: React.FC = () => {
           <Drawer.Screen
             key={machineType.id}
             name={machineType.name}
-            component={MachineTypesScreen}
+            component={MachineTypeDetailScreen}
+            initialParams={{ machineTypeId: machineType.id }}
           />
         ))}
       <Drawer.Screen name="Machine Types" component={MachineTypesScreen} />

@@ -90,7 +90,8 @@ const MachineTypeCard = ({ machineType }) => {
         <View style={styles.nameInput}>
           <TextInput
             value={machineTypeClone.name}
-            placeholder={machineTypeClone.name ?? 'Name'}
+            placeholder={'Machine Name'}
+            placeholderTextColor={'grey'}
             style={styles.nameInputField}
             onChangeText={handleNameChange}
           />
