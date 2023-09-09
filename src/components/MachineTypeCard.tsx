@@ -91,7 +91,6 @@ const MachineTypeCard = ({ machineType }) => {
           <TextInput
             value={machineTypeClone.name}
             placeholder={'Machine Name'}
-            placeholderTextColor={'grey'}
             style={styles.nameInputField}
             onChangeText={handleNameChange}
           />
@@ -129,7 +128,6 @@ const styles = StyleSheet.create({
   nameInput: {
     borderWidth: 1,
     borderColor: '#ccc',
-    // backgroundColor: '#fff',
     paddingHorizontal: 5,
     borderRadius: 4,
     marginBottom: 5,
