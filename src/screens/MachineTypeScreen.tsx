@@ -9,6 +9,7 @@ import {
   setMachineTypes,
 } from '../store/actions/machineTypeActions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getRandomId } from '../utils';
 
 const MachineTypesScreen = () => {
   const machineTypes: MachineType[] = useSelector(
@@ -34,7 +35,7 @@ const MachineTypesScreen = () => {
 
   const addNewMachineType = () => {
     const newMachineType: MachineType = {
-      id: (Math.random() * 100000).toString(),
+      id: getRandomId(),
       name: '',
       attributes: [],
       titleAttribute: '',
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    height: 'auto',
+    height: 100,
     backgroundColor: 'blue',
   },
 });

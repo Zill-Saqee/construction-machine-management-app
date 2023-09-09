@@ -8,6 +8,7 @@ import { AttributeType, MachineAttribute, MachineType } from '../types';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { editMachineType } from '../store/actions/machineTypeActions';
+import { getRandomId } from '../utils';
 
 const MachineTypeCard = ({ machineType }) => {
   const [machineTypeClone, setMachineTypeClone] = useState<MachineType>({
@@ -61,7 +62,7 @@ const MachineTypeCard = ({ machineType }) => {
       attributes: [
         ...machineTypeClone.attributes,
         {
-          id: (Math.random() * 10000).toString(),
+          id: getRandomId(),
           name: '',
           type: AttributeType.TEXT,
         },
