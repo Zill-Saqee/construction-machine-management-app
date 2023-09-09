@@ -22,7 +22,7 @@ const MachineTypesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 2,
     height: 'auto',
     backgroundColor: 'blue',
   },

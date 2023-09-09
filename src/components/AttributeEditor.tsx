@@ -33,21 +33,14 @@ const AttributeEditor = ({ machineTypeId, attributes }) => {
           onChange={() => {}}
         />
       ))}
-      <Button title="Save" onPress={saveAttributes} />
+      {/* <Button title="Save" onPress={saveAttributes} /> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
-    marginBottom: 12,
-    color: 'green',
+    padding: 2,
   },
 });
 

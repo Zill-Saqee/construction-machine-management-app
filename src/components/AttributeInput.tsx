@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import Icon from 'react-native-vector-icons/FontAwesome'; // You may need to install this library
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const AttributeInput = ({ initialLabel, options, onChange }) => {
   const [label, setLabel] = useState(initialLabel);
@@ -35,35 +35,41 @@ const AttributeInput = ({ initialLabel, options, onChange }) => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      <Icon name="trash" size={20} color="#ccc" style={styles.icon} />
+      <TouchableOpacity onPress={() => {}}>
+        <View style={styles.deleteIconContainer}>
+          <Icon name="trash" size={30} color="#777" />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 16,
+    marginBottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderColor: '#ccc',
     backgroundColor: '#fff',
-    paddingHorizontal: 8,
+    paddingHorizontal: 5,
     borderRadius: 4,
   },
-  icon: {
-    marginRight: 8, // Margin between delete icon and input
+  deleteIconContainer: {
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   labelInput: {
-    flex: 1,
+    flex: 3,
     fontSize: 16,
-    paddingVertical: 8,
+    paddingVertical: 5,
     color: '#333',
   },
   picker: {
-    flex: 1,
+    flex: 2,
     borderWidth: 1,
-    backgroundColor: 'green',
+    backgroundColor: 'lightgrey',
+    fontSize: 1,
   },
 });
 
