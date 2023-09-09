@@ -76,6 +76,7 @@ const MachineTypeCard = ({ machineType }) => {
 
   return (
     <Card style={styles.card}>
+      <Card.Title titleStyle={styles.boldText} title={machineTypeClone.name} />
       <Card.Content>
         <View style={styles.nameInput}>
           <TextInput
@@ -105,6 +106,10 @@ const styles = StyleSheet.create({
   card: {
     padding: 0,
     margin: 10,
+  },
+  boldText: {
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   nameInput: {
     borderColor: '#ccc',
