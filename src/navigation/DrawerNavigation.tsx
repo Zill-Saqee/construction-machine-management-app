@@ -1,15 +1,15 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import MachineTypesScreen from '../components/MachineTypeScreen';
-import DashboardScreen from '../components/DashboardScreen';
+import MachineTypesScreen from '../screens/MachineTypeScreen';
+import DashboardScreen from '../screens/DashboardScreen';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator: React.FC = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="DashboardScreen" component={DashboardScreen} />
-      <Drawer.Screen name="MachineTypesScreen" component={MachineTypesScreen} />
+      <Drawer.Screen name="Dashboard" component={DashboardScreen} />
+      <Drawer.Screen name="MachineTypes" component={MachineTypesScreen} />
     </Drawer.Navigator>
   );
 };

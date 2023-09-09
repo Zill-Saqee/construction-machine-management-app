@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Form from '../components/Form';
 
 type MachineType = {
   id: number;
@@ -21,8 +22,7 @@ const MachineTypesScreen: React.FC<MachineTypesScreenProps> = ({
   ];
 
   return (
-    <View>
-      <Text>Machine Types</Text>
+    <View style={styles.container}>
       <FlatList
         data={machineTypes}
         keyExtractor={item => item.id.toString()}
@@ -35,8 +35,19 @@ const MachineTypesScreen: React.FC<MachineTypesScreenProps> = ({
           </TouchableOpacity>
         )}
       />
+      <Form />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    height: 'auto',
+    backgroundColor: 'red',
+  },
+});
 
 export default MachineTypesScreen;

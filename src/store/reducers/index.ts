@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux';
 import machineTypesReducer from './machineTypesReducer'; // Import your reducers as needed
+import machinesReducer from './machinesReducer';
 
 const rootReducer = combineReducers({
   machineTypes: machineTypesReducer,
-  // Add more reducers here
+  machines: machinesReducer,
 });
 
 export default rootReducer;

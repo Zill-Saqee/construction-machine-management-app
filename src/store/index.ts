@@ -8,4 +8,5 @@ const middlewares = [thunk];
 
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
+export type RootState = any;
 export default store;
