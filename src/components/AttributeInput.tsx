@@ -3,7 +3,12 @@ import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const AttributeInput = ({ initialLabel, options, onChange }) => {
+const AttributeInput = ({
+  initialLabel,
+  options,
+  onChange,
+  removeAttribute,
+}) => {
   const [label, setLabel] = useState(initialLabel);
   const [selectedValue, setSelectedValue] = useState('');
 
@@ -35,7 +40,7 @@ const AttributeInput = ({ initialLabel, options, onChange }) => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={removeAttribute}>
         <View style={styles.deleteIconContainer}>
           <Icon name="trash" size={30} color="#777" />
         </View>

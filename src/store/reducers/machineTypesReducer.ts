@@ -1,4 +1,4 @@
-import { FieldType, MachineAttribute, MachineType } from '../../types';
+import { AttributeType, MachineAttribute, MachineType } from '../../types';
 import { ActionTypes } from '../actionTypes';
 
 export interface AddMachineTypeAction {
@@ -36,7 +36,7 @@ const initialState: MachineType[] = [
       {
         id: 'property',
         name: 'property',
-        type: FieldType.TEXT,
+        type: AttributeType.TEXT,
       },
     ],
     titleAttribute: 'weight',
@@ -48,17 +48,17 @@ const initialState: MachineType[] = [
       {
         id: 'weight',
         name: 'weight',
-        type: FieldType.TEXT,
+        type: AttributeType.TEXT,
       },
       {
         id: 'modal',
         name: 'modal',
-        type: FieldType.NUMBER,
+        type: AttributeType.NUMBER,
       },
       {
         id: 'age',
         name: 'age',
-        type: FieldType.NUMBER,
+        type: AttributeType.NUMBER,
       },
     ],
     titleAttribute: 'weight',

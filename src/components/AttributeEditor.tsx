@@ -1,39 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { FieldType, MachineAttribute } from '../types';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { AttributeType, MachineAttribute } from '../types';
 import AttributeInput from './AttributeInput';
-// import { updateMachineTypeAttributes } from './machineTypesSlice';
 
-const AttributeEditor = ({ machineTypeId, attributes }) => {
-  const dispatch = useDispatch();
-  const [editedAttributes, setEditedAttributes] = useState({ ...attributes });
-
-  const handleAttributeChange = (attribute, value) => {
-    setEditedAttributes({
-      ...editedAttributes,
-      [attribute]: value,
-    });
-  };
-
-  const saveAttributes = () => {
-    // dispatch(updateMachineTypeAttributes({ machineTypeId, attributes: editedAttributes }));
-  };
-
-  console.log(attributes);
-
+const AttributeEditor = ({
+  attributes,
+  handleAttributeChange,
+  removeAttribute,
+}) => {
   return (
     <View style={styles.container}>
       {attributes.map((attribute: MachineAttribute) => (
         <AttributeInput
           key={attribute.id}
           initialLabel={attribute.name}
-          options={Object.values(FieldType)}
-          onChange={() => {}}
+          options={Object.values(AttributeType)}
+          onChange={handleAttributeChange}
+          removeAttribute={() => removeAttribute(attribute.id)}
         />
       ))}
-      {/* <Button title="Save" onPress={saveAttributes} /> */}
     </View>
   );
 };

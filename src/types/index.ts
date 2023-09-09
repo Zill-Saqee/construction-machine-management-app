@@ -1,4 +1,4 @@
-export enum FieldType {
+export enum AttributeType {
   DATE = 'date',
   TEXT = 'text',
   CHECKBOX = 'checkbox',
@@ -8,7 +8,7 @@ export enum FieldType {
 export interface MachineAttribute {
   id: string;
   name: string;
-  type: FieldType;
+  type: AttributeType;
 }
 
 // Define the shape of a machine type
