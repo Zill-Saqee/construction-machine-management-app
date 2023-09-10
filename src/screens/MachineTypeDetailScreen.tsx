@@ -1,18 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  TextInput,
   Button,
-  FlatList,
   StyleSheet,
   ScrollView,
+  Alert,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { MachineAttribute, Machine } from '../types';
-import { ActionTypes } from '../store/actionTypes';
+import { Machine } from '../types';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import MachineItemCard from '../components/MachineItemCard';
 import { addMachineItemAction } from '../store/actions/machineItemActions';
@@ -44,15 +41,11 @@ const MachineTypeDetailScreen: React.FC = () => {
     machineItem => machineItem.typeId === currentMachineType?.id,
   );
 
-  // const [newMachineName, setNewMachineName] = useState('');
-  // const [, setNewMachineAttributes] = useState<MachineAttribute[]>([]);
-
-  useEffect(() => {
-    // Load the existing machine type and its machines from your data store or API
-    // Update the component state with the loaded data
-  }, [machineTypeId]);
-
   const handleAddMachine = () => {
+    if (!currentMachineType?.attributes?.length) {
+      Alert.alert('Error', 'Please add its attributes first');
+      return;
+    }
     const newMachineItem: Machine = {
       id: getRandomId(),
       typeId: currentMachineType?.id as string,
