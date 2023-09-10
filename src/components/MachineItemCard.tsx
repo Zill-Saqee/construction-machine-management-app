@@ -9,7 +9,10 @@ import { CheckBox } from 'react-native-elements';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import * as _ from 'lodash';
-import { editMachineItemAction } from '../store/actions/machineItemActions';
+import {
+  deleteMachineItemAction,
+  editMachineItemAction,
+} from '../store/actions/machineItemActions';
 type MachineItemCardProps = {
   machineTypeAttributes: MachineAttribute[];
   machineItem: Machine;
@@ -55,6 +58,11 @@ const MachineItemCard = ({
   const handleSaveItem = () => {
     dispatch(editMachineItemAction(machineItemClone));
   };
+
+  const deleteMachine = (machineToDelete: Machine) => {
+    dispatch(deleteMachineItemAction(machineToDelete));
+  };
+
   return (
     <Card style={styles.card}>
       <Card.Content>
@@ -102,11 +110,15 @@ const MachineItemCard = ({
             )}
           </View>
         ))}
-        {isMachineItemChanged && (
-          <View>
-            <Button title="Save" onPress={handleSaveItem} />
-          </View>
-        )}
+        <View style={styles.actionBtns}>
+          <Button
+            title="Delete"
+            onPress={() => deleteMachine(machineItemClone)}
+          />
+          {isMachineItemChanged && (
+            <Button title="Update" onPress={handleSaveItem} />
+          )}
+        </View>
       </Card.Content>
     </Card>
   );
@@ -143,6 +155,14 @@ const styles = StyleSheet.create({
   checkboxText: {
     fontSize: 16,
     color: 'white',
+  },
+  actionBtns: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    fontSize: 10,
+    gap: 5,
   },
 });
 

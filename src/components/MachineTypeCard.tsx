@@ -107,7 +107,7 @@ const MachineTypeCard = ({ machineType }) => {
             onPress={() => deleteMachineType(machineTypeClone)}
           />
           {isMachineTypeChanged && (
-            <Button title="Save Changes" onPress={saveAllChanges} />
+            <Button title="Update" onPress={saveAllChanges} />
           )}
         </View>
       </Card.Content>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     fontSize: 10,
-    gap: 3,
+    gap: 5,
   },
 });
 

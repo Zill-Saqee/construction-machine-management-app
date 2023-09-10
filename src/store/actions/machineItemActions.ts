@@ -14,3 +14,10 @@ export const editMachineItemAction = (updatedMachineItem: Machine) => {
     payload: updatedMachineItem,
   };
 };
+
+export const deleteMachineItemAction = (deletedMachine: Machine) => {
+  return {
+    type: ActionTypes.DELETE_MACHINE,
+    payload: deletedMachine,
+  };
+};
