@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { Machine } from '../types';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import MachineItemCard from '../components/MachineItemCard';
 import { addMachineItemAction } from '../store/actions/machineItemActions';
 import { getRandomId } from '../utils';
@@ -27,6 +27,7 @@ type MachineTypeDetailScreenRouteProp = RouteProp<
 const MachineTypeDetailScreen: React.FC = () => {
   const dispatch = useDispatch();
 
+  const navigation = useNavigation<any>();
   const route = useRoute<MachineTypeDetailScreenRouteProp>();
 
   const { machineTypeId } = route.params;
@@ -43,7 +44,24 @@ const MachineTypeDetailScreen: React.FC = () => {
 
   const handleAddMachine = () => {
     if (!currentMachineType?.attributes?.length) {
-      Alert.alert('Error', 'Please add its attributes first');
+      Alert.alert(
+        'Error',
+        'Please add its attributes first',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel button pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'Go To Machine Types',
+            onPress: () => {
+              navigation.navigate('Machine Types');
+            },
+          },
+        ],
+        { cancelable: false },
+      );
       return;
     }
     const newMachineItem: Machine = {
