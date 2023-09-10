@@ -1,18 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Button, StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import * as _ from 'lodash';
 import AttributeEditor from './AttributeEditor';
 import { TextInput } from 'react-native';
-import { AttributeType, MachineAttribute, MachineType } from '../types';
+import {
+  AttributeType,
+  Machine,
+  MachineAttribute,
+  MachineType,
+} from '../types';
 import { useIsFocused } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteMachineTypeAction,
   editMachineType,
 } from '../store/actions/machineTypeActions';
 import { getRandomId } from '../utils';
 import { deleteAllMachineTypeItemsAction } from '../store/actions/machineItemActions';
+import { RootState } from '../store';
 
 const MachineTypeCard = ({ machineType }) => {
   const [machineTypeClone, setMachineTypeClone] = useState<MachineType>({
@@ -20,8 +27,13 @@ const MachineTypeCard = ({ machineType }) => {
   });
 
   const isFocused = useIsFocused();
-
   const dispatch = useDispatch();
+
+  const allMachineTypes = useSelector((state: RootState) => state.machineTypes);
+  const allMachines = useSelector((state: RootState) => state.machines);
+  const currentMachineTypeItems = allMachines.filter(
+    machineItem => machineItem.typeId === machineType?.id,
+  );
 
   useEffect(() => {
     if (!isFocused) {
@@ -82,10 +94,16 @@ const MachineTypeCard = ({ machineType }) => {
   };
 
   const saveAllChanges = () => {
-    if (!machineTypeClone.name) {
-      Alert.alert('Error', 'Name ca not be empty');
+    const isChanged = !_.isEqual(machineType, machineTypeClone);
+    if (!isChanged) return;
+    const isDuplicate = allMachineTypes.find(
+      type => type.name === machineTypeClone.name,
+    );
+    if (!machineTypeClone.name || isDuplicate) {
+      Alert.alert('Error', 'Name is empty or already taken');
       return;
     }
+
     dispatch(editMachineType(machineTypeClone));
   };
 
