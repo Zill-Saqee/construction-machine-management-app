@@ -13,23 +13,26 @@ const DashboardScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       {machineTypes?.length ? (
-        <List.Section>
-          {machineTypes
-            .filter(type => !!type.name)
-            .map(item => (
-              <List.Item
-                key={item.id}
-                title={item.name}
-                // left={() => <List.Icon icon="folder" />}
-                onPress={() =>
-                  navigation.navigate(item.name, {
-                    machineTypeId: item.id,
-                  })
-                }
-                style={styles.listItem}
-              />
-            ))}
-        </List.Section>
+        <>
+          <Text style={styles.heading}>List Of Machine Types</Text>
+          <List.Section>
+            {machineTypes
+              .filter(type => !!type.name)
+              .map(item => (
+                <List.Item
+                  key={item.id}
+                  title={item.name}
+                  // left={() => <List.Icon icon="folder" />}
+                  onPress={() =>
+                    navigation.navigate(item.name, {
+                      machineTypeId: item.id,
+                    })
+                  }
+                  style={styles.listItem}
+                />
+              ))}
+          </List.Section>
+        </>
       ) : (
         <Card elevation={3} style={styles.card}>
           <Card.Content>
@@ -54,9 +57,15 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#2980b9',
   },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
   listItem: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 4,
+    marginBottom: 5,
   },
   card: {
     margin: 16,
