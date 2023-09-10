@@ -103,7 +103,7 @@ const MachineItemCard = ({
                 iconType="material"
                 containerStyle={styles.checkboxContainer}
                 textStyle={styles.checkboxText}
-                checked={true}
+                checked={!!machineItemClone[attr.id] as boolean}
                 onPress={status => handleCheckboxChange(attr.id, status)}
               />
             )}
