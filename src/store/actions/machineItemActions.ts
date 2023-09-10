@@ -1,4 +1,4 @@
-import { Machine } from '../../types';
+import { Machine, MachineType } from '../../types';
 import { ActionTypes } from '../actionTypes';
 
 export const addMachineItemAction = (newMachineItem: Machine) => {
@@ -19,5 +19,14 @@ export const deleteMachineItemAction = (deletedMachine: Machine) => {
   return {
     type: ActionTypes.DELETE_MACHINE,
     payload: deletedMachine,
+  };
+};
+
+export const deleteAllMachineTypeItemsAction = (
+  deletedMachineType: MachineType,
+) => {
+  return {
+    type: ActionTypes.DELETE_ALL_MACHINE_TYPE_ITEMS,
+    payload: deletedMachineType,
   };
 };

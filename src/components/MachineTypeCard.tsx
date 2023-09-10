@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Alert, Button, StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import * as _ from 'lodash';
 import AttributeEditor from './AttributeEditor';
@@ -12,6 +12,7 @@ import {
   editMachineType,
 } from '../store/actions/machineTypeActions';
 import { getRandomId } from '../utils';
+import { deleteAllMachineTypeItemsAction } from '../store/actions/machineItemActions';
 
 const MachineTypeCard = ({ machineType }) => {
   const [machineTypeClone, setMachineTypeClone] = useState<MachineType>({
@@ -77,9 +78,14 @@ const MachineTypeCard = ({ machineType }) => {
 
   const deleteMachineType = (machineTypeToDelete: MachineType) => {
     dispatch(deleteMachineTypeAction(machineTypeToDelete));
+    dispatch(deleteAllMachineTypeItemsAction(machineTypeToDelete));
   };
 
   const saveAllChanges = () => {
+    if (!machineTypeClone.name) {
+      Alert.alert('Error', 'Invalid Data');
+      return;
+    }
     dispatch(editMachineType(machineTypeClone));
   };
 
