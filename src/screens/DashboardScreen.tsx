@@ -54,7 +54,7 @@ const DashboardScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 10,
     backgroundColor: '#2980b9',
   },
   heading: {
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   card: {
     margin: 16,
     padding: 16,
+    backgroundColor: 'transparent',
   },
   cardText: {
     fontSize: 18,
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: 'black',
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 16,
   },
 });
