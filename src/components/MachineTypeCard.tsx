@@ -83,7 +83,7 @@ const MachineTypeCard = ({ machineType }) => {
 
   const saveAllChanges = () => {
     if (!machineTypeClone.name) {
-      Alert.alert('Error', 'Invalid Data');
+      Alert.alert('Error', 'Name ca not be empty');
       return;
     }
     dispatch(editMachineType(machineTypeClone));
