@@ -1,14 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Button, ScrollView } from 'react-native';
 import MachineTypeCard from '../components/MachineTypeCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { MachineType, STORAGE_KEYS } from '../types';
-import {
-  addMachineTypeAction,
-  setMachineTypes,
-} from '../store/actions/machineTypeActions';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MachineType } from '../types';
+import { addMachineTypeAction } from '../store/actions/machineTypeActions';
 import { getRandomId } from '../utils';
 
 const MachineTypesScreen = () => {
@@ -17,21 +13,6 @@ const MachineTypesScreen = () => {
   );
 
   const dispatch = useDispatch();
-
-  const setMachineTypesInStoreFromStorage = useCallback(
-    () => async () => {
-      const machineTypesFromStorage = await AsyncStorage.getItem(
-        STORAGE_KEYS.MACHINE_TYPES,
-      );
-      console.log('machineTypesFromStorage', machineTypesFromStorage);
-      dispatch(setMachineTypes(machineTypesFromStorage));
-    },
-    [dispatch],
-  );
-
-  useEffect(() => {
-    setMachineTypesInStoreFromStorage();
-  }, [setMachineTypesInStoreFromStorage]);
 
   const addNewMachineType = () => {
     const newMachineType: MachineType = {

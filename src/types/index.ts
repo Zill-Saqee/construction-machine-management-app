@@ -1,7 +1,3 @@
-export enum STORAGE_KEYS {
-  MACHINE_TYPES = 'machineTypes',
-}
-
 export enum AttributeType {
   DATE = 'date',
   TEXT = 'text',
