@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 5,
+    borderColor: '#ccc',
   },
   card: {
     margin: 16,
