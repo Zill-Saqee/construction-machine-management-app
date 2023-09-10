@@ -60,8 +60,6 @@ const MachineTypeDetailScreen: React.FC = () => {
     dispatch(addMachineItemAction(newMachineItem));
   };
 
-  console.log('currentMachineType.attributes', currentMachineType?.attributes);
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
