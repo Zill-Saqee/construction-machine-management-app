@@ -47,7 +47,7 @@ const MachineTypesScreen = () => {
   return (
     <ScrollView style={styles.container}>
       {machineTypes.map((machineType: MachineType) => (
-        <MachineTypeCard key={machineType.name} machineType={machineType} />
+        <MachineTypeCard key={machineType.id} machineType={machineType} />
       ))}
       <Button title="Add New Machine Type" onPress={addNewMachineType} />
     </ScrollView>

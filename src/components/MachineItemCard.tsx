@@ -66,7 +66,7 @@ const MachineItemCard = ({
     <Card style={styles.card}>
       <Card.Content>
         {machineTypeAttributes.map((attr: MachineAttribute) => (
-          <View style={styles.inputWrapper}>
+          <View style={styles.inputWrapper} key={attr.id}>
             {attr.type !== AttributeType.CHECKBOX && (
               <Text style={styles.label}>{attr.name}</Text>
             )}
