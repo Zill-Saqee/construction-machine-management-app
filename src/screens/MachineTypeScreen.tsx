@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Button, ScrollView } from 'react-native';
 import MachineTypeCard from '../components/MachineTypeCard';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,9 +12,6 @@ import { getRandomId } from '../utils';
 import { useIsFocused } from '@react-navigation/native';
 
 const MachineTypesScreen = () => {
-  const [newlyCreatedMachineTypes, setNewlyCreatedMachineTypes] = useState<
-    MachineType[]
-  >([]);
   const machineTypes: MachineType[] = useSelector(
     (state: RootState) => state.machineTypes,
   );
@@ -30,19 +27,18 @@ const MachineTypesScreen = () => {
       attributes: [],
       titleAttribute: '',
     };
-    setNewlyCreatedMachineTypes([...newlyCreatedMachineTypes, newMachineType]);
     dispatch(addMachineTypeAction(newMachineType));
   };
 
   useEffect(() => {
     if (!isFocused) {
-      newlyCreatedMachineTypes.forEach(type => {
+      machineTypes.forEach(type => {
         if (!type.name) {
           dispatch(deleteMachineTypeAction(type));
         }
       });
     }
-  }, [isFocused, dispatch, newlyCreatedMachineTypes]);
+  }, [dispatch, isFocused, machineTypes]);
 
   return (
     <ScrollView style={styles.container}>
