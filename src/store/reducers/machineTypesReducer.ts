@@ -32,6 +32,10 @@ const machineTypesReducer = (
 ): MachineType[] => {
   switch (action.type) {
     case ActionTypes.ADD_MACHINE_TYPE:
+      const alreadyExists = state.find(
+        type => type.name === action.payload.name,
+      );
+      if (alreadyExists) return state;
       return [...state, action.payload];
     case ActionTypes.EDIT_MACHINE_TYPE:
       return state.map(machineType =>
