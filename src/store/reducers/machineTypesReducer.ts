@@ -36,8 +36,16 @@ const machineTypesReducer = (
         type => type.name === action.payload.name,
       );
       if (alreadyExists) return state;
+      action.payload = {
+        ...action.payload,
+        attributes: action.payload.attributes.filter(attr => attr.name),
+      };
       return [...state, action.payload];
     case ActionTypes.EDIT_MACHINE_TYPE:
+      action.payload = {
+        ...action.payload,
+        attributes: action.payload.attributes.filter(attr => attr.name),
+      };
       return state.map(machineType =>
         machineType.id === action.payload.id
           ? { ...machineType, ...action.payload }

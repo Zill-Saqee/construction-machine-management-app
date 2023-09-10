@@ -82,7 +82,7 @@ const MachineTypeCard = ({ machineType }) => {
         {
           id: getRandomId(),
           name: '',
-          type: AttributeType.TEXT,
+          type: AttributeType.TEXT, // Default: Text
         },
       ],
     });
