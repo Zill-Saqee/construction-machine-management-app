@@ -99,7 +99,7 @@ const MachineTypeCard = ({ machineType }) => {
     const isDuplicate = allMachineTypes.find(
       type => type.name === machineTypeClone.name,
     );
-    if (!isChanged && (!machineTypeClone.name || isDuplicate)) {
+    if (isChanged && (!machineTypeClone.name || isDuplicate)) {
       Alert.alert('Error', 'Name is empty or already taken');
       return;
     }
