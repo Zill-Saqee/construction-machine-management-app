@@ -15,7 +15,7 @@ export const deleteMachineTypeAction = (deletedMachineType: MachineType) => {
   };
 };
 
-export const editMachineType = (updatedMachineType: MachineType) => {
+export const editMachineTypeAction = (updatedMachineType: MachineType) => {
   return {
     type: ActionTypes.EDIT_MACHINE_TYPE,
     payload: updatedMachineType,

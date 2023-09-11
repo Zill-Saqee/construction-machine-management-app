@@ -1,21 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Button, StyleSheet, View } from 'react-native';
 import { Card } from 'react-native-paper';
 import * as _ from 'lodash';
 import AttributeEditor from './AttributeEditor';
 import { TextInput } from 'react-native';
-import {
-  AttributeType,
-  Machine,
-  MachineAttribute,
-  MachineType,
-} from '../types';
+import { AttributeType, MachineAttribute, MachineType } from '../types';
 import { useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteMachineTypeAction,
-  editMachineType,
+  editMachineTypeAction,
 } from '../store/actions/machineTypeActions';
 import { getRandomId } from '../utils';
 import { deleteAllMachineTypeItemsAction } from '../store/actions/machineItemActions';
@@ -30,10 +24,6 @@ const MachineTypeCard = ({ machineType }) => {
   const dispatch = useDispatch();
 
   const allMachineTypes = useSelector((state: RootState) => state.machineTypes);
-  const allMachines = useSelector((state: RootState) => state.machines);
-  const currentMachineTypeItems = allMachines.filter(
-    machineItem => machineItem.typeId === machineType?.id,
-  );
 
   useEffect(() => {
     if (!isFocused) {
@@ -95,16 +85,28 @@ const MachineTypeCard = ({ machineType }) => {
 
   const saveAllChanges = () => {
     const isChanged = !_.isEqual(machineType, machineTypeClone);
-    if (!isChanged) return;
+    if (!isChanged) {
+      return;
+    }
     const isDuplicate = allMachineTypes.find(
-      type => type.name === machineTypeClone.name,
+      type =>
+        type.name === machineTypeClone.name && type.id !== machineTypeClone.id,
     );
-    if (isChanged && (!machineTypeClone.name || isDuplicate)) {
+    if (!machineTypeClone?.name || isDuplicate) {
       Alert.alert('Error', 'Name is empty or already taken');
+      return;
+    } else if (
+      _.uniqBy(machineTypeClone.attributes, 'name').length !==
+      machineTypeClone.attributes.length
+    ) {
+      Alert.alert('Error', 'Duplicate attributes found');
+      return;
+    } else if (machineTypeClone.attributes.find(a => !a?.name)) {
+      Alert.alert('Error', 'Please correct attribute name');
       return;
     }
 
-    dispatch(editMachineType(machineTypeClone));
+    dispatch(editMachineTypeAction(machineTypeClone));
   };
 
   return (
